@@ -146,6 +146,10 @@ html,body{width:100%;min-height:100vh;background:#2A2D2B;}
   font-size:26px;color:var(--white);margin-bottom:16px;
   position:relative;
   clip-path:polygon(0 0,90% 0,100% 10%,100% 100%,0 100%);
+  overflow:hidden;
+}
+.avatar-box img{
+  width:100%;height:100%;object-fit:cover;display:block;
 }
 .name-line{
   font-family:var(--cond);font-weight:900;font-style:italic;
@@ -346,7 +350,7 @@ html,body{width:100%;min-height:100vh;background:#2A2D2B;}
           <div class="section-meta">// 00 · PROFILE</div>
           <div class="about-layout">
             <div class="about-left">
-              <div class="avatar-box">EA</div>
+              <div class="avatar-box"><img src="mifoto.jpg" alt="Eder Amaya"></div>
               <div class="name-line">Eder Yoel Amaya</div>
               <div class="role-line">Coordinador / Desarrollador en IT</div>
               <div class="cyan-rule"></div>
