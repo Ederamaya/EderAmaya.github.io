@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eder Amaya · IT Coordinator & Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;1,700;1,900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --bg:#E8E8E4;
+  --sidebar:#3A3E3B;
+  --sidebar2:#2E3130;
+  --charcoal:#4A4E4B;
+  --line:#B0B0AA;
+  --linefaint:#D0D0CA;
+  --cyan:#00C8CC;
+  --red:#E8382A;
+  --white:#FFFFFF;
+  --text-dark:#1A1C1B;
+  --text-mid:#5A5E5B;
+  --text-light:#8A8E8B;
+  --dot:rgba(0,0,0,0.12);
+  --mono:'Share Tech Mono',monospace;
+  --cond:'Barlow Condensed',sans-serif;
+}
+
+html,body{width:100%;min-height:100vh;background:#2A2D2B;}
+
+#root{
+  background:var(--bg);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:var(--cond);
+  position:relative;
+  overflow:hidden;
+}
+
+#root::before{
+  content:'';
+  position:absolute;inset:0;
+  background-image:radial-gradient(circle,var(--dot) 1px,transparent 1px);
+  background-size:20px 20px;
+  pointer-events:none;z-index:0;
+}
+
+.layout{
+  display:flex;
+  flex:1;
+  position:relative;z-index:2;
+  min-height:calc(100vh - 120px);
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:48px;
+  background:var(--sidebar);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:16px 0;
+  flex-shrink:0;
+  position:relative;z-index:10;
+}
+.sidebar-logo{width:28px;height:28px;margin-bottom:20px;}
+.sidebar-vtext{
+  writing-mode:vertical-rl;text-orientation:mixed;
+  transform:rotate(180deg);
+  font-family:var(--mono);font-size:8px;letter-spacing:3px;
+  color:rgba(255,255,255,0.3);text-transform:uppercase;
+  flex:1;display:flex;align-items:center;
+}
+.sidebar-num{
+  font-family:var(--mono);font-size:9px;
+  color:rgba(255,255,255,0.2);letter-spacing:1px;
+  margin-top:auto;padding-bottom:8px;
+  line-height:2;text-align:center;
+}
+
+/* ─── NAV TABS ─── */
+.nav-strip{
+  display:flex;align-items:flex-end;gap:2px;
+  padding:0 24px;background:transparent;
+  position:relative;z-index:5;margin-bottom:0;
+}
+.nav-tab{
+  font-family:var(--cond);font-size:11px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;
+  padding:8px 16px 7px;border:none;
+  background:var(--linefaint);color:var(--text-mid);
+  cursor:pointer;border-radius:2px 2px 0 0;
+  transition:all 0.18s;border-top:2px solid transparent;
+}
+.nav-tab:hover{background:rgba(255,255,255,0.7);color:var(--text-dark);}
+.nav-tab.active{background:var(--white);color:var(--text-dark);border-top:2px solid var(--cyan);}
+
+/* ─── MAIN ─── */
+.main{flex:1;display:flex;flex-direction:column;position:relative;}
+.content-area{
+  flex:1;background:var(--white);
+  border-left:1px solid var(--line);
+  position:relative;overflow:hidden;
+}
+
+/* ─── PANELS ─── */
+.panel{
+  display:none;
+  padding:28px 32px 28px 28px;
+  animation:pIn 0.25s ease;
+  min-height:100%;
+}
+.panel.active{display:block;}
+@keyframes pIn{
+  from{opacity:0;transform:translateY(6px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ─── TYPOGRAPHY ─── */
+.big-label{
+  font-family:var(--cond);font-style:italic;font-weight:900;
+  font-size:64px;line-height:0.85;
+  color:var(--sidebar);letter-spacing:-1px;
+  position:relative;display:inline-block;user-select:none;
+}
+.big-label.outlined{
+  -webkit-text-stroke:1.5px var(--sidebar);color:transparent;
+}
+.section-meta{
+  font-family:var(--mono);font-size:9px;letter-spacing:3px;
+  color:var(--text-light);text-transform:uppercase;margin-bottom:6px;
+}
+.thin-rule{height:1px;background:linear-gradient(90deg,var(--line),transparent);margin:14px 0;}
+.cyan-rule{height:2px;background:var(--cyan);width:40px;margin-bottom:14px;}
+
+/* ─── ABOUT ─── */
+.about-layout{
+  display:grid;grid-template-columns:1fr 260px;gap:32px;
+}
+.avatar-box{
+  width:80px;height:80px;background:var(--sidebar);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--cond);font-weight:900;font-style:italic;
+  font-size:26px;color:var(--white);margin-bottom:16px;
+  position:relative;
+  clip-path:polygon(0 0,90% 0,100% 10%,100% 100%,0 100%);
+}
+.name-line{
+  font-family:var(--cond);font-weight:900;font-style:italic;
+  font-size:32px;color:var(--text-dark);letter-spacing:-0.5px;line-height:1;
+}
+.role-line{
+  font-family:var(--mono);font-size:10px;letter-spacing:3px;
+  color:var(--cyan);text-transform:uppercase;margin-top:4px;margin-bottom:16px;
+}
+.bio-text{font-size:13px;line-height:1.75;color:var(--text-mid);font-weight:400;max-width:380px;}
+
+/* blueprint deco */
+.blueprint-deco{
+  position:absolute;right:0;top:0;bottom:0;width:260px;
+  pointer-events:none;opacity:0.5;
+}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat-card{
+  border:1px solid var(--linefaint);padding:12px 14px;
+  background:var(--bg);position:relative;overflow:hidden;
+}
+.stat-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--cyan);opacity:0.5;
+}
+.stat-num{font-family:var(--cond);font-weight:900;font-style:italic;font-size:28px;color:var(--text-dark);line-height:1;}
+.stat-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--text-light);text-transform:uppercase;margin-top:2px;}
+.stat-card .stat-num[style]{font-style:normal;font-weight:700;color:var(--charcoal);}
+
+/* ─── SKILLS ─── */
+.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;}
+.skill-row{margin-bottom:14px;}
+.skill-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
+.skill-name{font-family:var(--cond);font-weight:700;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--charcoal);}
+.skill-pct{font-family:var(--mono);font-size:10px;color:var(--text-light);}
+.skill-track{height:3px;background:var(--linefaint);position:relative;overflow:visible;}
+.skill-bar{height:100%;background:var(--sidebar);width:0%;transition:width 0.9s cubic-bezier(0.22,1,0.36,1);position:relative;}
+.skill-bar::after{content:'';position:absolute;right:-3px;top:-3px;width:3px;height:9px;background:var(--cyan);}
+
+.tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;}
+.tag{
+  font-family:var(--mono);font-size:9px;letter-spacing:1.5px;
+  padding:3px 9px;border:1px solid var(--line);color:var(--text-mid);
+  text-transform:uppercase;background:var(--bg);
+}
+.tag.accent{border-color:var(--cyan);color:var(--cyan);background:rgba(0,200,204,0.04);}
+
+/* ─── PROJECTS ─── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.proj-card{
+  border:1px solid var(--linefaint);background:var(--bg);
+  padding:16px 18px;cursor:pointer;transition:all 0.2s;
+  position:relative;overflow:hidden;
+  clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%);
+}
+.proj-card::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:3px;
+  background:var(--sidebar);transition:background 0.2s;
+}
+.proj-card:hover{border-color:var(--line);background:white;transform:translateX(3px);}
+.proj-card:hover::before{background:var(--cyan);}
+.proj-status{
+  display:inline-block;font-family:var(--mono);font-size:7px;letter-spacing:2px;
+  padding:2px 6px;margin-bottom:6px;text-transform:uppercase;
+}
+.proj-status.live{background:rgba(0,200,204,0.1);color:var(--cyan);border:1px solid rgba(0,200,204,0.3);}
+.proj-status.dev{background:rgba(232,56,42,0.08);color:var(--red);border:1px solid rgba(232,56,42,0.2);}
+.proj-status.enterprise{background:rgba(58,62,59,0.08);color:var(--charcoal);border:1px solid var(--linefaint);}
+.proj-year{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--text-light);text-transform:uppercase;margin-bottom:4px;}
+.proj-name{font-family:var(--cond);font-weight:900;font-style:italic;font-size:18px;color:var(--text-dark);letter-spacing:-0.3px;margin-bottom:6px;line-height:1.1;}
+.proj-desc{font-size:11px;line-height:1.65;color:var(--text-mid);}
+.proj-tech{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+.tech-pill{font-family:var(--mono);font-size:8px;letter-spacing:1px;padding:2px 7px;background:var(--white);border:1px solid var(--line);color:var(--text-light);text-transform:uppercase;}
+
+/* ─── EXPERIENCE ─── */
+.exp-row{
+  display:grid;grid-template-columns:110px 1fr;gap:0 20px;
+  margin-bottom:22px;padding-bottom:22px;
+  border-bottom:1px solid var(--linefaint);
+}
+.exp-row:last-child{border-bottom:none;}
+.exp-period{font-family:var(--mono);font-size:9px;letter-spacing:1px;color:var(--text-light);padding-top:3px;line-height:1.7;}
+.exp-title{font-family:var(--cond);font-weight:900;font-style:italic;font-size:17px;color:var(--text-dark);margin-bottom:2px;}
+.exp-org{font-family:var(--mono);font-size:9px;letter-spacing:2px;color:var(--cyan);text-transform:uppercase;margin-bottom:8px;}
+.exp-list{list-style:none;}
+.exp-list li{font-size:11px;line-height:1.7;color:var(--text-mid);padding-left:12px;position:relative;}
+.exp-list li::before{content:'→';position:absolute;left:0;color:var(--text-light);font-size:9px;}
+
+/* ─── CONTACT ─── */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:22px;}
+.contact-card{
+  background:var(--bg);border:1px solid var(--linefaint);
+  padding:14px 16px;display:flex;align-items:center;gap:12px;
+  text-decoration:none;transition:border-color 0.2s;
+}
+.contact-card:hover{border-color:var(--cyan);}
+.contact-icon-box{
+  width:32px;height:32px;background:var(--sidebar);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:13px;
+}
+.contact-lbl{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:var(--text-light);text-transform:uppercase;margin-bottom:3px;}
+.contact-val{font-size:12px;color:var(--text-dark);font-weight:600;}
+.btn-row{display:flex;gap:10px;margin-top:4px;}
+.btn-primary{
+  font-family:var(--cond);font-weight:700;font-size:12px;
+  letter-spacing:3px;text-transform:uppercase;padding:10px 22px;
+  background:var(--sidebar);color:var(--white);border:none;cursor:pointer;
+  clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,0 100%);
+  transition:background 0.2s;
+}
+.btn-primary:hover{background:var(--charcoal);}
+.btn-sec{
+  font-family:var(--cond);font-weight:700;font-size:12px;
+  letter-spacing:3px;text-transform:uppercase;padding:10px 22px;
+  background:transparent;color:var(--text-dark);border:1px solid var(--line);cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-sec:hover{border-color:var(--sidebar);color:var(--sidebar);}
+
+/* ─── BOTTOM BAR ─── */
+.bottom-bar{
+  background:var(--sidebar2);display:flex;align-items:center;justify-content:space-between;
+  padding:7px 24px;position:relative;z-index:5;
+}
+.bot-left{display:flex;align-items:center;gap:16px;}
+.bot-tag{font-family:var(--mono);font-size:8px;letter-spacing:2px;color:rgba(255,255,255,0.3);text-transform:uppercase;}
+.bot-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);box-shadow:0 0 5px var(--cyan);animation:bp 2s infinite;}
+@keyframes bp{0%,100%{opacity:1}50%{opacity:0.3}}
+.bot-clock{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:2px;}
+
+/* ─── TOP HEADER ─── */
+.top-bar{
+  background:var(--sidebar);padding:10px 24px 0 0;
+  display:flex;align-items:flex-end;gap:0;
+  position:relative;z-index:5;
+}
+.top-title-block{padding:12px 20px 14px;position:relative;}
+.top-eyebrow{font-family:var(--mono);font-size:8px;letter-spacing:3px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:2px;}
+.top-name{font-family:var(--cond);font-weight:900;font-style:italic;font-size:22px;color:var(--white);letter-spacing:1px;}
+.top-name span{color:var(--cyan);}
+</style>
+</head>
+<body>
+<div id="root">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="top-title-block">
+      <div class="top-eyebrow">// portfolio_system · v2.0</div>
+      <div class="top-name">Eder <span>Amaya</span></div>
+    </div>
+    <div class="nav-strip">
+      <button class="nav-tab active" onclick="switchPanel('about',this)">About</button>
+      <button class="nav-tab" onclick="switchPanel('skills',this)">Skills</button>
+      <button class="nav-tab" onclick="switchPanel('projects',this)">Projects</button>
+      <button class="nav-tab" onclick="switchPanel('exp',this)">Experience</button>
+      <button class="nav-tab" onclick="switchPanel('contact',this)">Contact</button>
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <svg class="sidebar-logo" viewBox="0 0 28 28" fill="none">
+        <polygon points="14,2 26,8 26,20 14,26 2,20 2,8" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+        <polygon points="14,6 22,10 22,18 14,22 6,18 6,10" fill="none" stroke="rgba(0,200,204,0.6)" stroke-width="0.8"/>
+        <circle cx="14" cy="14" r="3" fill="rgba(0,200,204,0.8)"/>
+      </svg>
+      <div class="sidebar-vtext">IT · DEV · SPS · HN</div>
+      <div class="sidebar-num">00<br>01<br>02<br>03<br>04</div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="main">
+      <div class="content-area">
+
+        <!-- blueprint SVG overlay -->
+        <svg class="blueprint-deco" viewBox="0 0 260 520" fill="none" preserveAspectRatio="xMaxYMid meet">
+          <line x1="10" y1="0" x2="10" y2="520" stroke="#B0B0AA" stroke-width="0.4" stroke-dasharray="4 8"/>
+          <line x1="60" y1="0" x2="60" y2="520" stroke="#B0B0AA" stroke-width="0.3" stroke-dasharray="2 10" opacity="0.5"/>
+          <line x1="0" y1="80" x2="260" y2="80" stroke="#B0B0AA" stroke-width="0.4" stroke-dasharray="4 8"/>
+          <line x1="0" y1="200" x2="260" y2="200" stroke="#B0B0AA" stroke-width="0.3" stroke-dasharray="2 10" opacity="0.5"/>
+          <path d="M200 60 L240 60 L240 100" stroke="#00C8CC" stroke-width="0.6" fill="none" opacity="0.4"/>
+          <path d="M200 420 L240 420 L240 380" stroke="#B0B0AA" stroke-width="0.4" fill="none" opacity="0.4"/>
+          <circle cx="220" cy="300" r="30" stroke="#B0B0AA" stroke-width="0.4" stroke-dasharray="3 5" opacity="0.3"/>
+          <circle cx="220" cy="300" r="15" stroke="#00C8CC" stroke-width="0.4" opacity="0.25"/>
+          <text x="190" y="170" font-family="Share Tech Mono" font-size="7" fill="#B0B0AA" opacity="0.5">00S48</text>
+          <text x="190" y="310" font-family="Share Tech Mono" font-size="7" fill="#B0B0AA" opacity="0.5">00J22</text>
+          <line x1="140" y1="0" x2="200" y2="80" stroke="#B0B0AA" stroke-width="0.3" opacity="0.3"/>
+        </svg>
+
+        <!-- ═══ ABOUT ═══ -->
+        <div class="panel active" id="p-about">
+          <div class="section-meta">// 00 · PROFILE</div>
+          <div class="about-layout">
+            <div class="about-left">
+              <div class="avatar-box">EA</div>
+              <div class="name-line">Eder Yoel Amaya</div>
+              <div class="role-line">Coordinador / Desarrollador en IT</div>
+              <div class="cyan-rule"></div>
+              <div class="bio-text">
+                Ingeniero en Sistemas con más de 4 años de experiencia en coordinación de TI, desarrollo de software y administración de infraestructura tecnológica en entornos de alta demanda. Especializado en el sector aeroportuario hondureño — E.H.I.S.A. — gestionando un equipo de 4 especialistas y operaciones en múltiples aeropuertos. Desarrollador independiente de sistemas SaaS y soluciones web.
+              </div>
+              <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:6px;">
+                <span class="tag accent">E.H.I.S.A.</span>
+                <span class="tag accent">SAN · SAP · RTB</span>
+                <span class="tag">San Pedro Sula, HN</span>
+                <span class="tag">Freelance Dev</span>
+              </div>
+            </div>
+            <div>
+              <div class="section-meta" style="margin-bottom:10px;">// METRICS</div>
+              <div class="stat-grid">
+                <div class="stat-card">
+                  <div class="stat-num">5</div>
+                  <div class="stat-lbl">Áreas de experiencia</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-num">5</div>
+                  <div class="stat-lbl">Sistemas trabajados</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-num">4</div>
+                  <div class="stat-lbl">Años por área</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-num">6</div>
+                  <div class="stat-lbl">Lenguajes experimentados</div>
+                </div>
+              </div>
+              <div style="margin-top:16px;padding:12px 14px;border:1px solid var(--linefaint);background:var(--bg);">
+                <div class="section-meta" style="margin-bottom:6px;">// LOCATION</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--text-mid);">San Pedro Sula, Cortés · Honduras</div>
+                <div style="font-family:var(--mono);font-size:9px;color:var(--text-light);margin-top:4px;">LAT 15.5034 · LON -88.0225</div>
+              </div>
+              <div style="margin-top:10px;padding:12px 14px;border:1px solid rgba(0,200,204,0.2);background:rgba(0,200,204,0.03);">
+                <div class="section-meta" style="margin-bottom:6px;">// STATUS</div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <div class="bot-dot"></div>
+                  <span style="font-family:var(--mono);font-size:9px;color:var(--cyan);">DISPONIBLE PARA PROYECTOS</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ SKILLS ═══ -->
+        <div class="panel" id="p-skills">
+          <div class="section-meta">// 01 · CAPABILITIES</div>
+          <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:18px;">
+            <div class="big-label" style="font-size:44px;">Skills</div>
+            <div class="big-label outlined" style="font-size:44px;">Map</div>
+          </div>
+          <div class="skills-layout" id="skills-left-right"></div>
+          <div class="thin-rule" style="margin-top:20px;"></div>
+          <div class="section-meta" style="margin-top:14px;margin-bottom:8px;">// HERRAMIENTAS Y TECNOLOGÍAS</div>
+          <div class="tags-wrap" id="tags-out"></div>
+        </div>
+
+        <!-- ═══ PROJECTS ═══ -->
+        <div class="panel" id="p-projects">
+          <div class="section-meta">// 02 · PROJECT LOG</div>
+          <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;">
+            <div class="big-label" style="font-size:44px;">Featured</div>
+            <div class="big-label outlined" style="font-size:44px;color:var(--red);-webkit-text-stroke-color:var(--red);">Work</div>
+          </div>
+          <div class="proj-grid">
+
+            <div class="proj-card">
+              <div class="proj-status live">● LIVE</div>
+              <div class="proj-year">2024–2025 · SAAS · LOGÍSTICA</div>
+              <div class="proj-name">GeoCargo</div>
+              <div class="proj-desc">Sistema SaaS de gestión logística y almacenaje para CrediBodega. Control de inventario, QR tracking, cálculo de volumen/almacenaje e integración con impresoras Zebra ZQ620.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">Zebra ZPL</span>
+                <span class="tech-pill">REST API</span>
+                <span class="tech-pill">Docker</span>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-status enterprise">◆ ENTERPRISE</div>
+              <div class="proj-year">2023–2025 · AEROPORTUARIO</div>
+              <div class="proj-name">Airport Mgmt System</div>
+              <div class="proj-desc">Sistema interno de gestión de incidentes, órdenes de trabajo y control de carga en 4 aeropuertos. Integración con SAP, Amadeus (6 módulos) y sistemas biométricos ZKTeco.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">VB.NET</span>
+                <span class="tech-pill">SQL Server</span>
+                <span class="tech-pill">Amadeus</span>
+                <span class="tech-pill">SAP</span>
+                <span class="tech-pill">PHP</span>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-status dev">◉ EN SCOPING</div>
+              <div class="proj-year">2025 · WEB · PLATAFORMA</div>
+              <div class="proj-name">Legal Library Portal</div>
+              <div class="proj-desc">Biblioteca jurídica virtual para bufete de abogados. Gestión de documentos, control de acceso por roles y búsqueda avanzada de expedientes. WordPress + plugins especializados.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">WordPress</span>
+                <span class="tech-pill">FileBird</span>
+                <span class="tech-pill">Relevanssi</span>
+                <span class="tech-pill">MySQL</span>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-status enterprise">◆ ENTERPRISE</div>
+              <div class="proj-year">2024–2025 · ERP · INFRAESTRUCTURA</div>
+              <div class="proj-name">Odoo On-Premise Migration</div>
+              <div class="proj-desc">Migración del ERP Odoo de proveedor externo a infraestructura propia en E.H.I.S.A. Selección de hardware (Dell PowerEdge R550), documentación de procurement y planificación de despliegue.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">Odoo</span>
+                <span class="tech-pill">Linux</span>
+                <span class="tech-pill">Dell PowerEdge</span>
+                <span class="tech-pill">Docker</span>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-status live">● LIVE</div>
+              <div class="proj-year">2024–2025 · BI · REPORTERÍA</div>
+              <div class="proj-name">Amadeus Executive Report</div>
+              <div class="proj-desc">Presentación ejecutiva multi-página generada con Python/ReportLab para nueva dirección general. Cubre 6 módulos Amadeus activos con proyecciones ROI y justificación de inversión en lenguaje no técnico.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">ReportLab</span>
+                <span class="tech-pill">Amadeus</span>
+                <span class="tech-pill">Data Viz</span>
+              </div>
+            </div>
+
+            <div class="proj-card">
+              <div class="proj-status live">● LIVE</div>
+              <div class="proj-year">2022 · EMBEDDED · CONTROL</div>
+              <div class="proj-name">Toll Booth System</div>
+              <div class="proj-desc">Sistema de control vehicular aeroportuario (caseta de peaje) con PHP e integración de hardware de acceso. Registro de movimientos, facturación y reportería en tiempo real.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">PHP</span>
+                <span class="tech-pill">MySQL</span>
+                <span class="tech-pill">Hardware I/O</span>
+                <span class="tech-pill">SQL</span>
+              </div>
+            </div>
+
+
+            <div class="proj-card">
+              <div class="proj-status dev">◉ EN DESARROLLO</div>
+              <div class="proj-year">2025 · FULL-STACK · EDUCACIÓN</div>
+              <div class="proj-name">Sistema de Maestros</div>
+              <div class="proj-desc">Plataforma web institucional para gestión académica: docentes, alumnos, secciones, materias, horarios, asistencias, calificaciones e incidencias. 72+ archivos TS/TSX, 12 modelos de BD, 21 vistas y exportación a Excel.</div>
+              <div class="proj-tech">
+                <span class="tech-pill">React 19</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">SQL Server</span>
+                <span class="tech-pill">Sequelize</span>
+                <span class="tech-pill">Docker</span>
+                <span class="tech-pill">JWT</span>
+                <span class="tech-pill">Nginx</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ EXPERIENCE ═══ -->
+        <div class="panel" id="p-exp">
+          <div class="section-meta">// 03 · CAREER TIMELINE</div>
+          <div style="margin-bottom:20px;">
+            <div class="big-label" style="font-size:44px;">Experience</div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-period">Oct 2022<br>→ Presente</div>
+            <div>
+              <div class="exp-title">Coordinador / Desarrollador en IT</div>
+              <div class="exp-org">E.H.I.S.A. · Empresa Hondureña de Infraestructura y Servicios Aeroportuarios</div>
+              <ul class="exp-list">
+                <li>Liderazgo de equipo de 4 especialistas (desarrollo, infraestructura y soporte técnico)</li>
+                <li>Desarrollo de aplicaciones internas en VB.NET, PHP, SQL Server y MySQL para procesos operativos, financieros y logísticos</li>
+                <li>Implementación y administración de SAP y Amadeus (CUSS, ACUS, AODB, FMRS, FIDS, DDS) en 4 aeropuertos</li>
+                <li>Administración de infraestructura de red UniFi / Fortinet, Active Directory / Microsoft Entra ID y servidores Windows Server</li>
+                <li>Gestión de sistemas de videovigilancia (IVMS-4200), dispositivos biométricos ZKTeco y respaldos NAS</li>
+                <li>Coordinación de adquisiciones tecnológicas: TDRs, cuadros comparativos y requisiciones de compra</li>
+                <li>Soporte al área de Finanzas: validación de facturación, análisis de ingresos y generación de reportes</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-period">2023<br>→ Presente</div>
+            <div>
+              <div class="exp-title">Desarrollador de Software Independiente</div>
+              <div class="exp-org">Freelance · Consultor Tecnológico</div>
+              <ul class="exp-list">
+                <li>Desarrollo de GeoCargo — SaaS logístico en Node.js/MySQL actualmente en producción para CrediBodega</li>
+                <li>Diseño e integración de APIs, módulos de facturación electrónica y conexión con impresoras Zebra (ZPL / Link-OS SDK)</li>
+                <li>Construcción de sitios web para clientes locales (WordPress, Astro, HTML/CSS) con despliegue en VPS/Droplets (DigitalOcean)</li>
+                <li>Administración de entornos Docker, servidores Linux y gestión de dominios/SSL</li>
+                <li>Elaboración de contratos, propuestas técnicas y documentación de proyectos</li>
+              </ul>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;padding:14px 16px;border:1px solid var(--linefaint);background:var(--bg);">
+            <div class="section-meta" style="margin-bottom:10px;">// FORMACIÓN ACADÉMICA</div>
+            <div style="display:grid;grid-template-columns:100px 1fr;gap:8px 16px;align-items:start;">
+              <div style="font-family:var(--mono);font-size:9px;color:var(--text-light);">2017 – 2024</div>
+              <div>
+                <div style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text-dark);">Ingeniería en Sistemas</div>
+                <div style="font-family:var(--mono);font-size:9px;color:var(--text-mid);">Universidad Nacional Autónoma de Honduras (UNAH) · San Pedro Sula</div>
+              </div>
+              <div style="font-family:var(--mono);font-size:9px;color:var(--text-light);">2014 – 2016</div>
+              <div>
+                <div style="font-family:var(--cond);font-weight:700;font-size:14px;color:var(--text-dark);">Bachillerato Técnico en Electricidad</div>
+                <div style="font-family:var(--mono);font-size:9px;color:var(--text-mid);">Centro Técnico Hondureño Alemán · San Pedro Sula</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══ CONTACT ═══ -->
+        <div class="panel" id="p-contact">
+          <div class="section-meta">// 04 · COMM CHANNEL</div>
+          <div style="margin-bottom:20px;">
+            <div class="big-label" style="font-size:44px;">Contact</div>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-icon-box">📍</div>
+              <div>
+                <div class="contact-lbl">Ubicación</div>
+                <div class="contact-val">San Pedro Sula, Cortés · HN</div>
+              </div>
+            </div>
+            <a class="contact-card" href="mailto:eamayarivas@gmail.com" target="_blank" style="text-decoration:none;">
+              <div class="contact-icon-box" style="background:var(--cyan)">✉</div>
+              <div>
+                <div class="contact-lbl">Email</div>
+                <div class="contact-val"><span class="__cf_email__" >eamayarivas@gmail.com</span></div>
+              </div>
+            </a>
+            <div class="contact-card">
+              <div class="contact-icon-box">💼</div>
+              <div>
+                <div class="contact-lbl">LinkedIn</div>
+                <div class="contact-val">linkedin.com/in/ederamaya</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon-box">⌨</div>
+              <div>
+                <div class="contact-lbl">GitHub</div>
+                <div class="contact-val">github.com/ederamaya</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon-box">📞</div>
+              <div>
+                <div class="contact-lbl">Teléfono</div>
+                <div class="contact-val">+504 9659-1663</div>
+              </div>
+            </div>
+            <div class="contact-card" style="background:rgba(0,200,204,0.04);border-color:rgba(0,200,204,0.2);">
+              <div class="contact-icon-box" style="background:var(--sidebar2)">🟢</div>
+              <div>
+                <div class="contact-lbl">Disponibilidad</div>
+                <div class="contact-val" style="color:var(--cyan);">Proyectos freelance</div>
+              </div>
+            </div>
+          </div>
+          <div class="btn-row">
+            <button class="btn-primary" onclick="window.open('CV_Eder_Amaya_2026.docx')">↓ Descargar CV</button>
+            <button class="btn-sec" onclick="switchPanel('projects', document.querySelectorAll('.nav-tab')[2])">Ver Proyectos →</button>
+          </div>
+        </div>
+
+      </div><!-- content-area -->
+    </div><!-- main -->
+  </div><!-- layout -->
+
+  <!-- BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="bot-left">
+      <div class="bot-dot"></div>
+      <span class="bot-tag">E.H.I.S.A. · IT DEPT</span>
+      <span class="bot-tag">SPS · HN</span>
+    </div>
+    <div class="bot-left">
+      <span class="bot-tag">00S48 · 00J22</span>
+      <div id="clock" class="bot-clock">--:--:--</div>
+    </div>
+  </div>
+
+</div><!-- root -->
+
+<script>
+// ─── SKILLS DATA ─────────────────────────────────────────────────────────────
+const skillsData = [
+  { n: 'SQL Server / MySQL',        p: 90 },
+  { n: 'PHP',                       p: 85 },
+  { n: 'VB.NET',                    p: 82 },
+  { n: 'UniFi / Networking',        p: 85 },
+  { n: 'Active Directory / GPO',    p: 80 },
+  { n: 'JavaScript / Node.js',      p: 75 },
+  { n: 'Amadeus',                   p: 78 },
+  { n: 'Git / Azure DevOps / Jira', p: 78 },
+  { n: 'Python',                    p: 68 },
+  { n: 'Linux / Docker',            p: 72 },
+  { n: 'Odoo / ERP',                p: 70 },
+  { n: 'Agile / Scrum',             p: 72 },
+];
+
+const tagsData = [
+  'HTML/CSS','Git','Zebra ZPL','ReportLab','WordPress','Astro',
+  'REST APIs','IVMS-4200','ZKTeco','NAS / Backup','DigitalOcean',
+  'ERD Design','Navicat','Postman','Excel Avanzado','Fortinet',
+  'Dell PowerEdge','SAP','Microsoft Entra ID',
+  'Jira','Azure DevOps','Confluence','Metodología Agile','Office 365 Admin',
+];
+const accentTags = ['SQL Server / MySQL','PHP','UniFi / Networking','Git','REST APIs','Jira','Azure DevOps'];
+
+// ─── RENDER SKILLS ────────────────────────────────────────────────────────────
+const halfLen = Math.ceil(skillsData.length / 2);
+const lc = document.createElement('div');
+const rc = document.createElement('div');
+skillsData.forEach((s, i) => {
+  const col = i < halfLen ? lc : rc;
+  col.innerHTML += `<div class="skill-row">
+    <div class="skill-head">
+      <span class="skill-name">${s.n}</span>
+      <span class="skill-pct">${s.p}%</span>
+    </div>
+    <div class="skill-track"><div class="skill-bar" data-p="${s.p}"></div></div>
+  </div>`;
+});
+document.getElementById('skills-left-right').appendChild(lc);
+document.getElementById('skills-left-right').appendChild(rc);
+document.getElementById('tags-out').innerHTML = tagsData
+  .map(t => `<span class="tag${accentTags.includes(t) ? ' accent' : ''}">${t}</span>`)
+  .join('');
+
+// ─── PANEL SWITCH ─────────────────────────────────────────────────────────────
+function switchPanel(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('p-' + id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'skills') {
+    setTimeout(() => {
+      document.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.p + '%'; });
+    }, 80);
+  }
+}
+
+// Auto-trigger skills animation if starting on skills
+window.addEventListener('load', () => {
+  const activePanel = document.querySelector('.panel.active');
+  if (activePanel && activePanel.id === 'p-skills') {
+    setTimeout(() => {
+      document.querySelectorAll('.skill-bar').forEach(b => { b.style.width = b.dataset.p + '%'; });
+    }, 300);
+  }
+});
+
+// ─── CLOCK ──────────────────────────────────────────────────────────────────────────────
+(function updateClock() {
+  const el = document.getElementById('clock');
+  if (el) {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2,'0');
+    const m = String(now.getMinutes()).padStart(2,'0');
+    const s = String(now.getSeconds()).padStart(2,'0');
+    el.textContent = h + ':' + m + ':' + s;
+  }
+  setTimeout(updateClock, 1000);
+})();
+</script>
+</body>
+</html>
